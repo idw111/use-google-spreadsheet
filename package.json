@@ -1,7 +1,7 @@
 {
 	"name": "use-google-spreadsheet",
 	"version": "0.1.1",
-	"description": "",
+	"description": "helps developers use google spreadsheet as their data table (backend endpoint)",
 	"main": "lib/index.js",
 	"scripts": {
 		"clean": "rimraf lib",
@@ -36,7 +36,7 @@
 		"webpack": "^4.41.5",
 		"webpack-cli": "^3.3.10"
 	},
-	"dependencies": {
+	"peerDependencies": {
 		"axios": "^0.19.1"
 	}
 }
