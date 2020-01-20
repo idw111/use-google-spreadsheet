@@ -2,6 +2,8 @@
 
 > helps developers use google spreadsheet as their backend endpoint
 
+[Live Demo](https://idw111.github.io/use-google-spreadsheet/example/)
+
 ## install
 
 ```bash
