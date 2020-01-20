@@ -1,6 +1,6 @@
 # use-google-spreadsheet
 
-> helps developers use google spreadsheet as their backend endpoint
+> helps developers use google spreadsheet as their data table (backend endpoint)
 
 [Live Demo](https://idw111.github.io/use-google-spreadsheet/example/)
 
