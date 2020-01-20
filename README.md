@@ -13,6 +13,10 @@ npm install use-google-spreadsheet
 ## usage
 
 1. Create a google spreadsheet
+
+    - Insert keys in the first row
+    - Insert values after first row
+
 2. Publish the spreadsheet to web (File > Publish to Web)
 3. Use the share url to fetch the data (File > Share)
 4. You'll fetch the spreadsheet as the following
