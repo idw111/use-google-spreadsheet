@@ -23,7 +23,12 @@ const SomeComponent = ({}) => {
 			{rows.map((row, i) => {
 				return (
 					<li key={i}>
-						{row.key1}, {row.key2}, {row.key3}
+						{Object.keys(row).map((key, i) => (
+							<span key={i}>
+								{key}: {row[key]}
+								<br />
+							</span>
+						))}
 					</li>
 				);
 			})}
