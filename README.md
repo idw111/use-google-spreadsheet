@@ -28,6 +28,8 @@ npm install use-google-spreadsheet
 ]
 ```
 
+## example
+
 ```javascript
 import useGoogleSpreadsheet from 'use-google-spreadsheet';
 
