@@ -1,0 +1,42 @@
+{
+	"name": "use-google-spreadsheet",
+	"version": "0.0.1",
+	"description": "",
+	"main": "lib/index.js",
+	"scripts": {
+		"clean": "rimraf lib",
+		"build": "babel src --out-dir lib",
+		"build:example": "webpack --config ./example/webpack.config.js",
+		"prepublish": "npm run clean && npm run build",
+		"webpack": "webpack --watch --config ./example/webpack.config.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/idw111/use-google-spreadsheet"
+	},
+	"keywords": [
+		"react",
+		"hook",
+		"google spreadsheet",
+		"jam stack"
+	],
+	"author": "Dongwon Lim",
+	"license": "MIT",
+	"devDependencies": {
+		"@babel/cli": "^7.8.3",
+		"@babel/core": "^7.8.3",
+		"@babel/polyfill": "^7.8.3",
+		"@babel/preset-env": "^7.8.3",
+		"@babel/preset-react": "^7.8.3",
+		"babel-loader": "^8.0.6",
+		"react": "^16.12.0",
+		"react-dom": "^16.12.0",
+		"rimraf": "^3.0.0",
+		"webpack": "^4.41.5",
+		"webpack-cli": "^3.3.10"
+	},
+	"dependencies": {
+		"axios": "^0.19.1"
+	}
+}
