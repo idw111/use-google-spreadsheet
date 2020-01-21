@@ -1,6 +1,6 @@
 {
 	"name": "use-google-spreadsheet",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "helps developers use google spreadsheet as their data table (backend endpoint)",
 	"main": "./lib/index.js",
 	"files": [

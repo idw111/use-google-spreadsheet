@@ -12,14 +12,15 @@ npm install use-google-spreadsheet
 
 ## usage
 
-1. Create a google spreadsheet
+1. Configure Google Cloud Console to get API key for Google Sheets API (API_KEY)
+2. Create a google spreadsheet
 
     - Insert keys in the first row
     - Insert values after first row
 
-2. Publish the spreadsheet to web (File > Publish to Web)
-3. Use the share url to fetch the data (File > Share)
-4. You'll fetch the spreadsheet as the following
+3. Publish the spreadsheet to web (File > Publish to Web)
+4. Use the share url to fetch the data (File > Share)
+5. You'll fetch the spreadsheet as the following
 
 ![spreadsheet](https://user-images.githubusercontent.com/445464/72701147-aacbc880-3b91-11ea-81c5-d75c5c476f31.png)
 
@@ -38,8 +39,9 @@ npm install use-google-spreadsheet
 import useGoogleSpreadsheet from 'use-google-spreadsheet';
 
 const SomeComponent = ({}) => {
+	const API_KEY = 'XXXXXXXXXXXX';
 	const shareUrl = 'https://docs.google.com/spreadsheets/d/1W5D9WvlrXvndEc0b42OsdzJTT1M-MxKVYdPEtleqRQY/edit?usp=sharing';
-	const { rows, isFetching } = useGoogleSpreadsheet(shareUrl);
+	const { rows, isFetching } = useGoogleSpreadsheet(shareUrl, API_KEY);
 	return isFetching ? (
 		<Spinner />
 	) : rows ? (
@@ -57,6 +59,8 @@ const SomeComponent = ({}) => {
 				);
 			})}
 		</ul>
-	) : null;
+	) : (
+		<span>No Data</span>
+	);
 };
 ```
