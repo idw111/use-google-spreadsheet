@@ -19,7 +19,7 @@ const Example = ({}) => {
 	return (
 		<>
 			{isFetching ? (
-				<div className="loading">loading...</div>
+				<div className="loading">Loading...</div>
 			) : rows ? (
 				<ul>
 					{rows.map((row, i) => {
@@ -35,7 +35,9 @@ const Example = ({}) => {
 						);
 					})}
 				</ul>
-			) : null}
+			) : (
+				<span>No Data</span>
+			)}
 			<button onClick={handleChangeUrl}>change url</button>
 		</>
 	);

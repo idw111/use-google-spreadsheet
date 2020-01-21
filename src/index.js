@@ -29,6 +29,7 @@ const useGoogleSpreadsheet = (url, key) => {
 		const handleFetch = async url => {
 			const sheetId = getSpreadsheetId(url);
 			const endpoint = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}?includeGridData=true&key=${key}`;
+			setState({ rows: null, isFetching: true });
 			try {
 				const { data } = await axios.get(endpoint, { cancelToken: source.token });
 				const rows = convertSheetsToSimpleJson(data.sheets?.[0]?.data?.[0]?.rowData);
