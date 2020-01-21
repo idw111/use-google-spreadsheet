@@ -9,7 +9,6 @@ const getSpreadsheetId = url => {
 };
 
 const convertToSimpleJson = (rows = []) => {
-	console.log(rows);
 	return rows.map(row => {
 		const keys = Object.keys(row).filter(key => key.startsWith('gsx$'));
 		return keys.reduce((simpleRow, key) => {
@@ -21,24 +20,21 @@ const convertToSimpleJson = (rows = []) => {
 const useGoogleSpreadsheet = url => {
 	const [state, setState] = useState({ rows: null, isFetching: false });
 	useEffect(() => {
+		const source = axios.CancelToken.source();
 		const handleFetch = async url => {
-			console.log('handleFetch', url);
 			const sheetId = getSpreadsheetId(url);
 			const endpoint = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/full?alt=json`;
-			console.log('endpoint', endpoint);
 			try {
-				const { data } = await axios.get(endpoint, {});
+				const { data } = await axios.get(endpoint, { cancelToken: source.token });
 				const rows = convertToSimpleJson(data?.feed?.entry);
-				console.log(rows);
 				setState({ rows, isFetching: false });
 			} catch (err) {
-				console.error(err);
 				setState({ rows: null, isFetching: false });
 			}
 		};
 		handleFetch(url);
+		return () => source.cancel('cancelled by useEffect cleaning');
 	}, [url]);
-	// handleFetch(url);
 	return state;
 };
 
