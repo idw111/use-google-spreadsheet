@@ -8,9 +8,11 @@ const urls = [
 	'https://docs.google.com/spreadsheets/d/1XqhOiYajpp7zzj3ncJ8EpCKZoNOJSjiQdLTXCiBqCWc/edit?usp=sharing'
 ];
 
+const API_KEY = 'AIzaSyCdQT2rJxKIzwikcg9accLGBhQhaxkhSPw';
+
 const Example = ({}) => {
 	const [index, setIndex] = useState(0);
-	const { rows, isFetching } = useGoogleSpreadsheet(urls[index]);
+	const { rows, isFetching } = useGoogleSpreadsheet(urls[index], API_KEY);
 	const handleChangeUrl = () => {
 		setIndex((index + 1) % urls.length);
 	};

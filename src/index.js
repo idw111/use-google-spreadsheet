@@ -4,29 +4,35 @@ import axios from 'axios';
 const getSpreadsheetId = url => {
 	const pattern = /docs.google.com\/spreadsheets\/d\/([a-zA-Z0-9-]*)/;
 	const match = url.match(pattern);
-	if (!match) return null;
-	return match[1];
+	return !match ? url : match[1];
 };
 
-const convertToSimpleJson = (rows = []) => {
-	return rows.map(row => {
-		const keys = Object.keys(row).filter(key => key.startsWith('gsx$'));
-		return keys.reduce((simpleRow, key) => {
-			return { ...simpleRow, [key.replace('gsx$', '')]: row[key]?.$t };
-		}, {});
-	});
+const getDataValues = row => row.values.map(value => value.formattedValue);
+
+const convertSheetsToSimpleJson = (rows = []) => {
+	const keys = getDataValues(rows[0]);
+	return rows
+		.filter((_, i) => i > 0)
+		.map(row => {
+			const values = getDataValues(row);
+			return keys.reduce((simpleRow, key, i) => {
+				return { ...simpleRow, [key]: values[i] || null };
+			}, {});
+		});
 };
 
-const useGoogleSpreadsheet = url => {
+const useGoogleSpreadsheet = (url, key) => {
+	if (!key) console.warn('The second paramter API_KEY is required');
 	const [state, setState] = useState({ rows: null, isFetching: false });
 	useEffect(() => {
 		const source = axios.CancelToken.source();
 		const handleFetch = async url => {
 			const sheetId = getSpreadsheetId(url);
-			const endpoint = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/full?alt=json`;
+			const endpoint = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}?includeGridData=true&key=${key}`;
 			try {
 				const { data } = await axios.get(endpoint, { cancelToken: source.token });
-				const rows = convertToSimpleJson(data?.feed?.entry);
+				const rows = convertSheetsToSimpleJson(data.sheets?.[0]?.data?.[0]?.rowData);
+				console.log(rows);
 				setState({ rows, isFetching: false });
 			} catch (err) {
 				setState({ rows: null, isFetching: false });
