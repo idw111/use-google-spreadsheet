@@ -14,7 +14,8 @@ npm install use-google-spreadsheet
 
 1. Configure Google Cloud Console to get API key for Google Sheets API (API_KEY)
 
-    - If API_KEY is not given, it uses Google Sheets v3 API which would be deprecated soon
+    - It uses Google Sheets API v4, when API_KEY is given
+    - If API_KEY is not given, it falls back to Google Sheets API v3 which would be deprecated soon
 
 2. Create a google spreadsheet
 
