@@ -1,11 +1,11 @@
 import '@babel/polyfill';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import useGoogleSpreadsheet from '../src';
+import useGoogleSpreadsheet from '../lib';
 
 const urls = [
 	'https://docs.google.com/spreadsheets/d/1W5D9WvlrXvndEc0b42OsdzJTT1M-MxKVYdPEtleqRQY/edit?usp=sharing',
-	'https://docs.google.com/spreadsheets/d/1XqhOiYajpp7zzj3ncJ8EpCKZoNOJSjiQdLTXCiBqCWc/edit?usp=sharing'
+	'https://docs.google.com/spreadsheets/d/1XqhOiYajpp7zzj3ncJ8EpCKZoNOJSjiQdLTXCiBqCWc/edit?usp=sharing',
 ];
 
 const API_KEY = 'AIzaSyCdQT2rJxKIzwikcg9accLGBhQhaxkhSPw';
@@ -43,6 +43,6 @@ const Example = ({}) => {
 	);
 };
 
-window.onload = function() {
+window.onload = function () {
 	ReactDOM.render(<Example />, document.getElementById('root'));
 };
