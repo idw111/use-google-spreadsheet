@@ -8,7 +8,7 @@ export interface SimpleJson {
 }
 
 const getSpreadsheetId = (url: string): string => {
-	const pattern: RegExp = /docs.google.com\/spreadsheets\/d\/([a-zA-Z0-9-]*)/;
+	const pattern: RegExp = /docs.google.com\/spreadsheets\/d\/([a-zA-Z0-9-_]*)/;
 	const match = url.match(pattern);
 	return !match ? url : match[1];
 };
